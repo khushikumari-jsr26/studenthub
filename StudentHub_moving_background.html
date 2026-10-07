@@ -1,0 +1,3061 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StudentHub | Student Learning Platform</title>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<style>
+
+        /* =====================================================
+           ROOT COLORS
+        ===================================================== */
+
+        :root {
+            --primary: #FF6B00;
+            --secondary: #138808;
+            --background: #FFF8E7;
+            --text: #3B1F14;
+            --success: #138808;
+            --warning: #FFC107;
+
+            --white: #FFFFFF;
+            --border: #F1D5A8;
+            --muted: #795548;
+            --dark: #5B1010;
+            --danger: #C62828;
+
+            --saffron: #FF6B00;
+            --maroon: #8B0000;
+            --mustard: #FFC107;
+            --green: #138808;
+            --cream: #FFF8E7;
+
+            --gradient: linear-gradient(
+                135deg,
+                #FF6B00,
+                #E53935,
+                #8B0000
+            );
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            z-index: 1000;
+
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 23px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: var(--gradient);
+            color: white;
+
+            box-shadow: 0 8px 20px rgba(79,70,229,0.25);
+        }
+
+        .logo span:last-child {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-login {
+            padding: 10px 18px;
+            border: 1px solid var(--primary);
+            border-radius: 9px;
+            color: var(--primary) !important;
+        }
+
+        .nav-register {
+            padding: 11px 19px;
+            border-radius: 9px;
+
+            color: white !important;
+            background: var(--primary);
+        }
+
+        .nav-register:hover {
+            background: #3730A3;
+        }
+
+        .menu-btn {
+            display: none;
+
+            border: none;
+            background: transparent;
+
+            font-size: 25px;
+            color: var(--text);
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+            padding-top: 130px;
+            padding-bottom: 70px;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(79,70,229,0.13),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(6,182,212,0.14),
+                    transparent 30%
+                ),
+
+                var(--background);
+
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border-radius: 50px;
+
+            color: var(--primary);
+            background: #EEF2FF;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(43px, 6vw, 70px);
+            line-height: 1.08;
+
+            letter-spacing: -2.5px;
+
+            margin-bottom: 22px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--secondary)
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            max-width: 600px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+
+            padding: 14px 22px;
+
+            border-radius: 10px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+
+            box-shadow: 0 10px 25px rgba(79,70,229,0.25);
+        }
+
+        .btn-primary:hover {
+            background: #3730A3;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+
+            border: 1px solid #C7D2FE;
+        }
+
+        .btn-secondary:hover {
+            background: #EEF2FF;
+            transform: translateY(-3px);
+        }
+
+
+        /* =====================================================
+           HERO DASHBOARD
+        ===================================================== */
+
+        .hero-dashboard {
+            padding: 25px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+            border-radius: 22px;
+
+            box-shadow:
+                0 25px 70px rgba(15,23,42,0.12);
+
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 22px;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            color: white;
+            font-weight: 800;
+
+            background: var(--gradient);
+        }
+
+        .student-info h4 {
+            font-size: 14px;
+        }
+
+        .student-info p {
+            font-size: 11px;
+            color: #94A3B8;
+        }
+
+        .notification {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #F1F5F9;
+            color: var(--primary);
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 12px;
+        }
+
+        .mini-card {
+            padding: 17px;
+
+            background: var(--background);
+
+            border-radius: 14px;
+        }
+
+        .mini-card i {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .mini-card h3 {
+            font-size: 23px;
+        }
+
+        .mini-card p {
+            font-size: 10px;
+            color: #94A3B8;
+        }
+
+        .progress-card {
+            margin-top: 15px;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background: #EEF2FF;
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 9px;
+        }
+
+        .progress {
+            height: 8px;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: #DDE3FF;
+        }
+
+        .progress span {
+            display: block;
+
+            width: 76%;
+            height: 100%;
+
+            border-radius: 20px;
+
+            background: var(--gradient);
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .stats {
+            padding: 27px 0;
+
+            background: var(--dark);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+        }
+
+        .stat {
+            text-align: center;
+            border-right: 1px solid #334155;
+        }
+
+        .stat:last-child {
+            border: none;
+        }
+
+        .stat h2 {
+            font-size: 30px;
+            color: white;
+        }
+
+        .stat p {
+            font-size: 12px;
+            color: #94A3B8;
+        }
+
+
+        /* =====================================================
+           COMMON SECTION
+        ===================================================== */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .section-heading span {
+            color: var(--primary);
+
+            font-size: 12px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .section-heading h2 {
+            margin: 8px 0;
+
+            font-size: 38px;
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            max-width: 600px;
+            margin: auto;
+
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .features {
+            background: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 27px;
+
+            background: var(--background);
+
+            border: 1px solid var(--border);
+            border-radius: 17px;
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+
+            background: white;
+
+            box-shadow:
+                0 18px 40px rgba(15,23,42,0.08);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: #EEF2FF;
+            color: var(--primary);
+
+            font-size: 20px;
+
+            margin-bottom: 18px;
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           COURSES
+        ===================================================== */
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 23px;
+        }
+
+        .course-card {
+            overflow: hidden;
+
+            background: white;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            transition: 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 20px 45px rgba(15,23,42,0.09);
+        }
+
+        .course-image {
+            height: 155px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 50px;
+
+            background: var(--gradient);
+        }
+
+        .course-image.python {
+            background: linear-gradient(
+                135deg,
+                #FF6B00,
+                #138808
+            );
+        }
+
+        .course-image.database {
+            background: linear-gradient(
+                135deg,
+                #138808,
+                #138808
+            );
+        }
+
+        .course-body {
+            padding: 22px;
+        }
+
+        .course-tag {
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 50px;
+
+            background: #EEF2FF;
+            color: var(--primary);
+
+            font-size: 10px;
+            font-weight: 700;
+
+            margin-bottom: 10px;
+        }
+
+        .course-body h3 {
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+        .course-body p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 18px;
+            padding-top: 14px;
+
+            border-top: 1px solid var(--border);
+
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           DASHBOARD
+        ===================================================== */
+
+        .dashboard-section {
+            background: white;
+        }
+
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 23px;
+        }
+
+        .panel {
+            padding: 23px;
+
+            background: var(--background);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+        }
+
+        .panel-heading {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+        }
+
+        .panel-heading h3 {
+            font-size: 17px;
+        }
+
+        .panel-heading a {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .class-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .class-item:last-child {
+            border-bottom: none;
+        }
+
+        .class-time {
+            width: 70px;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            color: var(--primary);
+        }
+
+        .class-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            color: var(--primary);
+            background: #EEF2FF;
+        }
+
+        .class-details h4 {
+            font-size: 13px;
+        }
+
+        .class-details p {
+            color: #94A3B8;
+            font-size: 10px;
+        }
+
+
+        /* Assignment */
+
+        .assignment {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .assignment:last-child {
+            border-bottom: none;
+        }
+
+        .assignment h4 {
+            font-size: 13px;
+        }
+
+        .assignment p {
+            color: #94A3B8;
+            font-size: 10px;
+        }
+
+        .status {
+            padding: 5px 9px;
+
+            border-radius: 50px;
+
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .pending {
+            color: #B45309;
+            background: #FEF3C7;
+        }
+
+        .completed {
+            color: #15803D;
+            background: #DCFCE7;
+        }
+
+
+        /* =====================================================
+           ATTENDANCE
+        ===================================================== */
+
+        .attendance {
+            margin-top: 23px;
+
+            padding: 23px;
+
+            background: var(--background);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+        }
+
+        .attendance-header {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+        }
+
+        .attendance-header h3 {
+            font-size: 17px;
+        }
+
+        .attendance-percent {
+            color: var(--success);
+            font-weight: 800;
+        }
+
+        .attendance-bar {
+            height: 10px;
+
+            background: #DCFCE7;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .attendance-bar span {
+            display: block;
+
+            width: 88%;
+            height: 100%;
+
+            background: var(--success);
+        }
+
+
+        /* =====================================================
+           EVENTS
+        ===================================================== */
+
+        .events {
+            background: var(--background);
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 22px;
+        }
+
+        .event-card {
+            padding: 24px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+            border-radius: 17px;
+
+            transition: 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 15px 35px rgba(15,23,42,0.08);
+        }
+
+        .event-top {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin-bottom: 17px;
+        }
+
+        .date-box {
+            width: 48px;
+            height: 52px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #EEF2FF;
+            color: var(--primary);
+        }
+
+        .date-box strong {
+            font-size: 18px;
+        }
+
+        .date-box small {
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        .event-top h3 {
+            font-size: 15px;
+        }
+
+        .event-top p {
+            color: #94A3B8;
+            font-size: 10px;
+        }
+
+        .event-card > p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .event-button {
+            margin-top: 17px;
+
+            width: 100%;
+
+            padding: 10px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: #EEF2FF;
+            color: var(--primary);
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .event-button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+
+        /* =====================================================
+           CAREER
+        ===================================================== */
+
+        .career {
+            background:
+                linear-gradient(
+                    135deg,
+                    #EEF2FF,
+                    #ECFEFF
+                );
+        }
+
+        .career-layout {
+            display: grid;
+            grid-template-columns: 1fr 0.85fr;
+            gap: 55px;
+
+            align-items: center;
+        }
+
+        .career-content h2 {
+            font-size: 40px;
+            line-height: 1.2;
+
+            margin: 12px 0;
+        }
+
+        .career-content > p {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            margin-bottom: 23px;
+        }
+
+        .career-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+        .career-list div {
+            padding: 12px;
+
+            background: white;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .career-list i {
+            color: var(--success);
+            margin-right: 6px;
+        }
+
+        .job-card {
+            padding: 25px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 20px 50px rgba(15,23,42,0.08);
+        }
+
+        .job-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .job {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .job:last-child {
+            border-bottom: none;
+        }
+
+        .company-icon {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #EEF2FF;
+            color: var(--primary);
+        }
+
+        .job h4 {
+            font-size: 13px;
+        }
+
+        .job p {
+            color: #94A3B8;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           RESOURCES
+        ===================================================== */
+
+        .resources {
+            background: white;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 18px;
+        }
+
+        .resource {
+            padding: 22px;
+
+            background: var(--background);
+
+            border: 1px solid var(--border);
+            border-radius: 15px;
+
+            transition: 0.3s;
+        }
+
+        .resource:hover {
+            background: #EEF2FF;
+            transform: translateY(-5px);
+        }
+
+        .resource i {
+            color: var(--primary);
+            font-size: 25px;
+
+            margin-bottom: 12px;
+        }
+
+        .resource h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .resource p {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           TESTIMONIALS
+        ===================================================== */
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 22px;
+        }
+
+        .testimonial {
+            padding: 24px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+            border-radius: 17px;
+        }
+
+        .stars {
+            color: var(--warning);
+            margin-bottom: 13px;
+        }
+
+        .testimonial > p {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin-bottom: 18px;
+        }
+
+        .person {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .person-avatar {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #EEF2FF;
+            color: var(--primary);
+
+            font-weight: 800;
+        }
+
+        .person h4 {
+            font-size: 12px;
+        }
+
+        .person small {
+            color: #94A3B8;
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .cta {
+            padding: 70px 0;
+        }
+
+        .cta-box {
+            position: relative;
+
+            padding: 60px 25px;
+
+            overflow: hidden;
+
+            text-align: center;
+
+            border-radius: 25px;
+
+            color: white;
+
+            background: var(--gradient);
+
+            box-shadow:
+                0 20px 50px rgba(79,70,229,0.20);
+        }
+
+        .cta-box h2 {
+            font-size: 37px;
+            margin-bottom: 8px;
+        }
+
+        .cta-box p {
+            color: #E0F2FE;
+            font-size: 14px;
+
+            margin-bottom: 25px;
+        }
+
+        .cta-btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            background: #FFF8E7;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            padding: 60px 0 25px;
+
+            background: #0F172A;
+
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+            gap: 35px;
+
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            max-width: 310px;
+
+            color: #94A3B8;
+
+            font-size: 12px;
+
+            margin-top: 14px;
+        }
+
+        footer h3 {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin: 8px 0;
+        }
+
+        footer li a {
+            color: #94A3B8;
+            font-size: 11px;
+        }
+
+        footer li a:hover {
+            color: white;
+        }
+
+        .socials {
+            display: flex;
+            gap: 9px;
+
+            margin-top: 17px;
+        }
+
+        .socials a {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: #3B1F14;
+
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 20px;
+
+            border-top: 1px solid #3B1F14;
+
+            text-align: center;
+
+            color: #64748B;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           SCROLL ANIMATION
+        ===================================================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           BACK TO TOP
+        ===================================================== */
+
+        .top-btn {
+            position: fixed;
+
+            right: 22px;
+            bottom: 22px;
+
+            width: 45px;
+            height: 45px;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            border: none;
+            border-radius: 50%;
+
+            color: white;
+
+            background: var(--primary);
+
+            box-shadow: 0 8px 20px rgba(79,70,229,0.25);
+
+            z-index: 500;
+        }
+
+        .top-btn.show {
+            display: flex;
+        }
+
+
+        /* =====================================================
+           IMAGE ENHANCEMENTS
+        ===================================================== */
+
+        .hero-photo {
+            width: 100%;
+            height: 185px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            display: block;
+            box-shadow: 0 12px 30px rgba(15,23,42,0.12);
+        }
+
+        .course-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .course-card:hover .course-image img {
+            transform: scale(1.07);
+        }
+
+        .course-image i {
+            position: absolute;
+            right: 18px;
+            bottom: 15px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: rgba(255,255,255,.92);
+            color: var(--primary);
+            font-size: 25px;
+            box-shadow: 0 8px 20px rgba(15,23,42,.18);
+        }
+
+        .event-photo {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .event-card {
+            overflow: hidden;
+        }
+
+        .event-card:hover .event-photo {
+            transform: scale(1.03);
+        }
+
+        .resource {
+            overflow: hidden;
+        }
+
+        .resource-photo {
+            width: calc(100% + 44px);
+            height: 125px;
+            margin: -22px -22px 18px;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .resource:hover .resource-photo {
+            transform: scale(1.04);
+        }
+
+        .career-photo {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .person-avatar {
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .person-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .person {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 1000px) {
+
+            .nav-links {
+                position: absolute;
+
+                top: 75px;
+                left: 0;
+
+                width: 100%;
+
+                display: none;
+                flex-direction: column;
+
+                padding: 25px;
+
+                background: white;
+
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero-grid,
+            .career-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid,
+            .resource-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .course-grid,
+            .event-grid,
+            .testimonial-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .stat {
+                border: none;
+                margin: 10px 0;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+
+        @media(max-width: 650px) {
+
+            .container {
+                width: 92%;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .hero {
+                padding-top: 110px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .mini-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid,
+            .course-grid,
+            .event-grid,
+            .testimonial-grid,
+            .dashboard-layout,
+            .resource-grid,
+            .footer-grid,
+            .career-list {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-heading h2 {
+                font-size: 30px;
+            }
+
+            .career-content h2 {
+                font-size: 32px;
+            }
+
+            .cta-box h2 {
+                font-size: 29px;
+            }
+
+            .footer-grid {
+                gap: 25px;
+            }
+        }
+
+    
+
+        /* =====================================================
+           RESOURCE / MEDIA LAYOUT FIX
+        ===================================================== */
+        .resource-grid {
+            align-items: stretch;
+        }
+
+        .resource {
+            min-width: 0;
+            min-height: 310px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-photo {
+            width: calc(100% + 44px);
+            height: 145px;
+            flex-shrink: 0;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0;
+        }
+
+        .resource i {
+            flex-shrink: 0;
+        }
+
+        .resource h3 {
+            margin-top: 0;
+        }
+
+        .resource p {
+            margin-top: 0;
+        }
+
+        @media(max-width: 1000px) {
+            .resource {
+                min-height: 300px;
+            }
+        }
+
+        @media(max-width: 650px) {
+            .resource {
+                min-height: 0;
+            }
+
+            .resource-photo {
+                height: 175px;
+            }
+        }
+
+        /* =====================================================
+           TRADITIONAL BRIGHT INDIAN LOOK
+        ===================================================== */
+        .traditional-accent {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            display: flex;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .traditional-accent span {
+            flex: 1;
+            height: 100%;
+        }
+
+        .traditional-accent span:nth-child(1),
+        .traditional-accent span:nth-child(3),
+        .traditional-accent span:nth-child(5) {
+            background: #FF6B00;
+        }
+
+        .traditional-accent span:nth-child(2) {
+            background: #FFC107;
+        }
+
+        .traditional-accent span:nth-child(4) {
+            background: #138808;
+        }
+
+        .navbar {
+            background: rgba(255,248,231,0.96) !important;
+            border-bottom: 2px solid #F1D5A8 !important;
+        }
+
+        .logo-icon,
+        .btn-primary {
+            background: linear-gradient(135deg,#FF6B00,#E53935,#8B0000) !important;
+        }
+
+        .btn-secondary {
+            border-color: #138808 !important;
+            color: #138808 !important;
+            background: #FFFFFF !important;
+        }
+
+        .btn-secondary:hover {
+            background: #138808 !important;
+            color: #FFFFFF !important;
+        }
+
+        .badge {
+            background: #FFF0D6 !important;
+            color: #8B0000 !important;
+            border: 1px solid #FFC107;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg,#FF6B00,#E53935,#8B0000) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+
+        .section-heading span {
+            color: #FF6B00 !important;
+        }
+
+        .feature:hover,
+        .course:hover,
+        .event:hover,
+        .resource:hover,
+        .testimonial:hover {
+            border-color: #FFC107 !important;
+            box-shadow: 0 18px 40px rgba(139,0,0,.13) !important;
+        }
+
+        .course-icon,
+        .resource > i,
+        .feature > i {
+            color: #FF6B00 !important;
+            background: #FFF0D6 !important;
+        }
+
+        .job-card {
+            border-top: 5px solid #FF6B00 !important;
+        }
+
+        .event-date {
+            background: linear-gradient(135deg,#FF6B00,#8B0000) !important;
+        }
+
+        .stars {
+            color: #FFC107 !important;
+        }
+
+        .footer {
+            background: #5B1010 !important;
+        }
+
+    
+/* Moving photo slideshow behind hero content */
+.hero { position:relative; isolation:isolate; overflow:hidden; background:#fff8e7; }
+.hero::before {
+ content:""; position:absolute; inset:0; z-index:-2;
+ background-image:
+ linear-gradient(90deg,rgba(255,248,231,.94) 0%,rgba(255,248,231,.86) 55%,rgba(255,248,231,.67) 100%),
+ url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=85');
+ background-position:center; background-size:cover;
+ animation:heroBackground 24s ease-in-out infinite alternate;
+}
+.hero::after {
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:radial-gradient(circle at 85% 20%,rgba(255,106,0,.10),transparent 45%);
+}
+
+.hero::before {animation:heroZoom 18s ease-in-out infinite alternate;}
+.hero .hero-bg-slides {position:absolute;inset:0;z-index:-2;pointer-events:none;}
+.hero .hero-bg-slides span {position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:heroFade 18s infinite;}
+.hero .hero-bg-slides span:nth-child(1){background-image:url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=85');animation-delay:0s}
+.hero .hero-bg-slides span:nth-child(2){background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2000&q=85');animation-delay:6s}
+.hero .hero-bg-slides span:nth-child(3){background-image:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2000&q=85');animation-delay:12s}
+.hero::before {background:linear-gradient(90deg,rgba(255,248,231,.94),rgba(255,248,231,.72));z-index:-1;animation:none}
+.hero::after{z-index:-1}
+@keyframes heroFade {0%{opacity:0;transform:scale(1)} 7%,30%{opacity:1} 40%,100%{opacity:0;transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){.hero .hero-bg-slides span{animation:none}.hero .hero-bg-slides span:first-child{opacity:1}}
+
+</style>
+</head>
+<body>
+
+<div class="traditional-accent" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+<header class="navbar">
+<div class="container nav-container">
+<a class="logo" href="#home">
+<span class="logo-icon">
+<i class="fa-solid fa-graduation-cap"></i>
+</span>
+<span>StudentHub</span>
+</a>
+<button class="menu-btn" id="menuBtn">
+<i class="fa-solid fa-bars"></i>
+</button>
+<ul class="nav-links" id="navLinks">
+<li>
+<a href="#home">Home</a>
+</li>
+<li>
+<a href="#features">Features</a>
+</li>
+<li>
+<a href="#courses">Courses</a>
+</li>
+<li>
+<a href="#dashboard">Dashboard</a>
+</li>
+<li>
+<a href="#events">Events</a>
+</li>
+<li>
+<a href="#career">Career</a>
+</li>
+<li>
+<a class="nav-login" href="#" onclick="showLogin(event)">
+                    Login
+                </a>
+</li>
+<li>
+<a class="nav-register" href="#" onclick="showRegister(event)">
+                    Register
+                </a>
+</li>
+</ul>
+</div>
+</header>
+<!-- =====================================================
+     HERO
+===================================================== -->
+<section class="hero" id="home">
+<div class="hero-bg-slides" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="container hero-grid">
+<div class="hero-content reveal">
+<span class="badge">
+<i class="fa-solid fa-sparkles"></i>
+
+                Smart Student Platform
+
+            </span>
+<h1>
+
+                Your Study Life,
+
+                <br/>
+<span class="gradient-text">
+                    Simplified.
+                </span>
+</h1>
+<p class="hero-description">
+
+                StudentHub brings courses, assignments, timetable,
+                results, attendance, events and career opportunities
+                together in one simple platform.
+
+            </p>
+<div class="hero-buttons">
+<a class="btn btn-primary" href="#dashboard">
+
+                    Explore Dashboard
+
+                    <i class="fa-solid fa-arrow-right"></i>
+</a>
+<a class="btn btn-secondary" href="#courses">
+<i class="fa-solid fa-book-open"></i>
+
+                    Explore Courses
+
+                </a>
+</div>
+</div>
+<!-- HERO DASHBOARD -->
+<div class="hero-dashboard reveal">
+<img alt="Students studying together" class="hero-photo" loading="eager" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"/>
+<div class="dashboard-header">
+<div class="student-info">
+<div class="avatar">
+                        S
+                    </div>
+<div>
+<h4>
+                            Welcome back, Student 👋
+                        </h4>
+<p>
+                            Diploma • Computer Science
+                        </p>
+</div>
+</div>
+<div class="notification">
+<i class="fa-regular fa-bell"></i>
+</div>
+</div>
+<div class="mini-grid">
+<div class="mini-card">
+<i class="fa-solid fa-chart-line"></i>
+<h3>
+                        8.5
+                    </h3>
+<p>
+                        Current GPA
+                    </p>
+</div>
+<div class="mini-card">
+<i class="fa-solid fa-book"></i>
+<h3>
+                        06
+                    </h3>
+<p>
+                        Active Courses
+                    </p>
+</div>
+<div class="mini-card">
+<i class="fa-solid fa-list-check"></i>
+<h3>
+                        04
+                    </h3>
+<p>
+                        Assignments
+                    </p>
+</div>
+</div>
+<div class="progress-card">
+<div class="progress-top">
+<span>
+                        Semester Progress
+                    </span>
+<span>
+                        76%
+                    </span>
+</div>
+<div class="progress">
+<span></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
+     STATS
+===================================================== -->
+<div class="stats">
+<div class="container stats-grid">
+<div class="stat">
+<h2>
+                10K+
+            </h2>
+<p>
+                Active Students
+            </p>
+</div>
+<div class="stat">
+<h2>
+                250+
+            </h2>
+<p>
+                Courses
+            </p>
+</div>
+<div class="stat">
+<h2>
+                500+
+            </h2>
+<p>
+                Resources
+            </p>
+</div>
+<div class="stat">
+<h2>
+                95%
+            </h2>
+<p>
+                Satisfaction
+            </p>
+</div>
+</div>
+</div>
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+<section class="features" id="features">
+<div class="container">
+<div class="section-heading reveal">
+<span>
+                Powerful Features
+            </span>
+<h2>
+                Everything You Need
+            </h2>
+<p>
+                Manage your academic life from one simple dashboard.
+            </p>
+</div>
+<div class="feature-grid">
+<div class="feature-card reveal">
+<div class="feature-icon">
+<i class="fa-solid fa-book-open"></i>
+</div>
+<h3>
+                    My Courses
+                </h3>
+<p>
+                    Access courses, syllabus, notes and learning
+                    materials anytime.
+                </p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon">
+<i class="fa-solid fa-calendar-days"></i>
+</div>
+<h3>
+                    Smart Timetable
+                </h3>
+<p>
+                    View your daily and weekly class schedule easily.
+                </p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon">
+<i class="fa-solid fa-list-check"></i>
+</div>
+<h3>
+                    Assignments
+                </h3>
+<p>
+                    Track your pending, submitted and completed work.
+                </p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon">
+<i class="fa-solid fa-chart-pie"></i>
+</div>
+<h3>
+                    Performance
+                </h3>
+<p>
+                    Monitor your grades, attendance and academic progress.
+                </p>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
+     COURSES
+===================================================== -->
+<section id="courses">
+<div class="container">
+<div class="section-heading reveal">
+<span>
+                Popular Courses
+            </span>
+<h2>
+                Learn &amp; Improve
+            </h2>
+<p>
+                Learn important technical skills through practical courses.
+            </p>
+</div>
+<div class="course-grid">
+<div class="course-card reveal">
+<div class="course-image">
+<img alt="Java programming student coding" loading="lazy" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=900&amp;q=80"/>
+<i class="fa-brands fa-java"></i>
+</div>
+<div class="course-body">
+<span class="course-tag">
+                        Programming
+                    </span>
+<h3>
+                        Java Programming
+                    </h3>
+<p>
+                        Learn Java, OOP, classes, objects,
+                        inheritance and more.
+                    </p>
+<div class="course-footer">
+<span>
+<i class="fa-solid fa-book"></i>
+                            24 Lessons
+                        </span>
+<span>
+<i class="fa-solid fa-users"></i>
+                            1.2K
+                        </span>
+</div>
+</div>
+</div>
+<div class="course-card reveal">
+<div class="course-image python">
+<img alt="Python programming on laptop" loading="lazy" src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&amp;fit=crop&amp;w=900&amp;q=80"/>
+<i class="fa-brands fa-python"></i>
+</div>
+<div class="course-body">
+<span class="course-tag">
+                        Programming
+                    </span>
+<h3>
+                        Python Programming
+                    </h3>
+<p>
+                        Start Python from basics and build
+                        real projects.
+                    </p>
+<div class="course-footer">
+<span>
+<i class="fa-solid fa-book"></i>
+                            28 Lessons
+                        </span>
+<span>
+<i class="fa-solid fa-users"></i>
+                            3.1K
+                        </span>
+</div>
+</div>
+</div>
+<div class="course-card reveal">
+<div class="course-image database">
+<img alt="Database and server technology" loading="lazy" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=900&amp;q=80"/>
+<i class="fa-solid fa-database"></i>
+</div>
+<div class="course-body">
+<span class="course-tag">
+                        Database
+                    </span>
+<h3>
+                        MySQL &amp; DBMS
+                    </h3>
+<p>
+                        Learn SQL, tables, queries, joins,
+                        keys and database concepts.
+                    </p>
+<div class="course-footer">
+<span>
+<i class="fa-solid fa-book"></i>
+                            30 Lessons
+                        </span>
+<span>
+<i class="fa-solid fa-users"></i>
+                            2.4K
+                        </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
+     STUDENT DASHBOARD
+===================================================== -->
+<section class="dashboard-section" id="dashboard">
+<div class="container">
+<div class="section-heading reveal">
+<span>
+                Student Dashboard
+            </span>
+<h2>
+                Your Day at a Glance
+            </h2>
+<p>
+                Check classes, assignments and attendance from one place.
+            </p>
+</div>
+<div class="dashboard-layout">
+<!-- CLASSES -->
+<div class="panel reveal">
+<div class="panel-heading">
+<h3>
+                        Today's Classes
+                    </h3>
+<a href="#">
+                        View All
+                    </a>
+</div>
+<div class="class-item">
+<div class="class-time">
+                        09:00 AM
+                    </div>
+<div class="class-icon">
+<i class="fa-solid fa-code"></i>
+</div>
+<div class="class-details">
+<h4>
+                            Web Technology
+                        </h4>
+<p>
+                            Room 204 • Prof. Sharma
+                        </p>
+</div>
+</div>
+<div class="class-item">
+<div class="class-time">
+                        11:00 AM
+                    </div>
+<div class="class-icon">
+<i class="fa-solid fa-database"></i>
+</div>
+<div class="class-details">
+<h4>
+                            Database Management
+                        </h4>
+<p>
+                            Room 102 • Prof. Kumar
+                        </p>
+</div>
+</div>
+<div class="class-item">
+<div class="class-time">
+                        02:00 PM
+                    </div>
+<div class="class-icon">
+<i class="fa-brands fa-java"></i>
+</div>
+<div class="class-details">
+<h4>
+                            Java Programming
+                        </h4>
+<p>
+                            Lab 03 • Prof. Singh
+                        </p>
+</div>
+</div>
+</div>
+<!-- ASSIGNMENTS -->
+<div class="panel reveal">
+<div class="panel-heading">
+<h3>
+                        Assignments
+                    </h3>
+<a href="#">
+                        View All
+                    </a>
+</div>
+<div class="assignment">
+<div>
+<h4>
+                            DBMS Mini Project
+                        </h4>
+<p>
+                            Due: 10 October
+                        </p>
+</div>
+<span class="status pending">
+                        Pending
+                    </span>
+</div>
+<div class="assignment">
+<div>
+<h4>
+                            Java Practical
+                        </h4>
+<p>
+                            Due: 12 October
+                        </p>
+</div>
+<span class="status pending">
+                        Pending
+                    </span>
+</div>
+<div class="assignment">
+<div>
+<h4>
+                            HTML Portfolio
+                        </h4>
+<p>
+                            Submitted: 02 October
+                        </p>
+</div>
+<span class="status completed">
+                        Completed
+                    </span>
+</div>
+<div class="assignment">
+<div>
+<h4>
+                            Network Assignment
+                        </h4>
+<p>
+                            Submitted: 01 October
+                        </p>
+</div>
+<span class="status completed">
+                        Completed
+                    </span>
+</div>
+</div>
+</div>
+<!-- ATTENDANCE -->
+<div class="attendance reveal">
+<div class="attendance-header">
+<h3>
+                    Overall Attendance
+                </h3>
+<span class="attendance-percent">
+                    88%
+                </span>
+</div>
+<div class="attendance-bar">
+<span></span>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
+     EVENTS
+===================================================== -->
+<section class="events" id="events">
+<div class="container">
+<div class="section-heading reveal">
+<span>
+                Campus Events
+            </span>
+<h2>
+                What's Happening?
+            </h2>
+<p>
+                Stay updated with college events, workshops and competitions.
+            </p>
+</div>
+<div class="event-grid">
+<div class="event-card reveal">
+<img class="event-photo" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=85" alt="College technology event" loading="lazy">
+
+<div class="event-top">
+<div class="date-box">
+<strong>
+                            15
+                        </strong>
+<small>
+                            OCT
+                        </small>
+</div>
+<div>
+<h3>
+                            Tech Hackathon
+                        </h3>
+<p>
+                            10:00 AM • Auditorium
+                        </p>
+</div>
+</div>
+<p>
+                    Build innovative solutions and compete with talented
+                    students.
+                </p>
+<button class="event-button" onclick="registerEvent('Tech Hackathon')">
+
+                    Register Now
+
+                </button>
+</div>
+<div class="event-card reveal">
+<img class="event-photo" src="https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=900&q=85" alt="Career workshop event" loading="lazy">
+
+<div class="event-top">
+<div class="date-box">
+<strong>
+                            20
+                        </strong>
+<small>
+                            OCT
+                        </small>
+</div>
+<div>
+<h3>
+                            Career Workshop
+                        </h3>
+<p>
+                            11:30 AM • Seminar Hall
+                        </p>
+</div>
+</div>
+<p>
+                    Learn resume building and interview preparation
+                    from industry experts.
+                </p>
+<button class="event-button" onclick="registerEvent('Career Workshop')">
+
+                    Register Now
+
+                </button>
+</div>
+<div class="event-card reveal">
+<img class="event-photo" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=900&q=85" alt="College cultural event" loading="lazy">
+
+<div class="event-top">
+<div class="date-box">
+<strong>
+                            25
+                        </strong>
+<small>
+                            OCT
+                        </small>
+</div>
+<div>
+<h3>
+                            Cultural Fest
+                        </h3>
+<p>
+                            04:00 PM • College Ground
+                        </p>
+</div>
+</div>
+<p>
+                    Enjoy music, dance, games and exciting college activities.
+                </p>
+<button class="event-button" onclick="registerEvent('Cultural Fest')">
+
+                    Register Now
+
+                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
+     CAREER
+===================================================== -->
+<section class="career" id="career">
+<div class="container career-layout">
+<div class="career-content reveal">
+<span class="badge">
+                Career &amp; Opportunities
+            </span>
+<h2>
+
+                Build Skills.
+
+                <br/>
+<span class="gradient-text">
+                    Build Your Future.
+                </span>
+</h2>
+<p>
+                Find internships, jobs, scholarships and competitions
+                that help you move closer to your career goals.
+            </p>
+<div class="career-list">
+<div>
+<i class="fa-solid fa-check"></i>
+                    Internships
+                </div>
+<div>
+<i class="fa-solid fa-check"></i>
+                    Jobs
+                </div>
+<div>
+<i class="fa-solid fa-check"></i>
+                    Scholarships
+                </div>
+<div>
+<i class="fa-solid fa-check"></i>
+                    Hackathons
+                </div>
+</div>
+<a class="btn btn-primary" href="#" onclick="exploreCareer(event)">
+
+                Explore Opportunities
+
+                <i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+<div class="job-card reveal">
+<img alt="Students building their professional career" class="career-photo" loading="lazy" src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"/>
+<h3>
+                Latest Opportunities
+            </h3>
+<div class="job">
+<div class="company-icon">
+<i class="fa-solid fa-laptop-code"></i>
+</div>
+<div>
+<h4>
+                        Frontend Developer Intern
+                    </h4>
+<p>
+                        Remote • 3 Months
+                    </p>
+</div>
+</div>
+<div class="job">
+<div class="company-icon">
+<i class="fa-brands fa-python"></i>
+</div>
+<div>
+<h4>
+                        Python Developer Intern
+                    </h4>
+<p>
+                        Bengaluru • 6 Months
+                    </p>
+</div>
+</div>
+<div class="job">
+<div class="company-icon">
+<i class="fa-solid fa-mobile-screen"></i>
+</div>
+<div>
+<h4>
+                        App Developer Intern
+                    </h4>
+<p>
+                        Remote • 3 Months
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
+     RESOURCES
+===================================================== -->
+<section class="resources">
+<div class="container">
+<div class="section-heading reveal">
+<span>
+                Learning Resources
+            </span>
+<h2>
+                Study Smarter
+            </h2>
+<p>
+                Access useful study materials whenever you need them.
+            </p>
+</div>
+<div class="resource-grid">
+
+<div class="resource reveal">
+<img class="resource-photo"
+     src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=85"
+     alt="Books and study notes"
+     loading="lazy">
+<i class="fa-solid fa-file-pdf"></i>
+<h3>Notes</h3>
+<p>Subject-wise notes and study material.</p>
+</div>
+
+<div class="resource reveal">
+<img class="resource-photo"
+     src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=85"
+     alt="Student preparing previous papers"
+     loading="lazy">
+<i class="fa-solid fa-file-lines"></i>
+<h3>Previous Papers</h3>
+<p>Practice previous year examination papers.</p>
+</div>
+
+<div class="resource reveal">
+<img class="resource-photo"
+     src="https://images.unsplash.com/photo-1453738773917-9c3eff1db985?auto=format&fit=crop&w=800&q=85"
+     alt="Student solving questions"
+     loading="lazy">
+<i class="fa-solid fa-circle-question"></i>
+<h3>Question Bank</h3>
+<p>Prepare using important practice questions.</p>
+</div>
+
+<div class="resource reveal">
+<img class="resource-photo"
+     src="https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=800&q=85"
+     alt="Students learning in a workshop"
+     loading="lazy">
+<i class="fa-solid fa-video"></i>
+<h3>Video Lessons</h3>
+<p>Learn difficult topics through video lessons.</p>
+</div>
+
+</div>
+</div>
+</section>
+<!-- =====================================================
+     TESTIMONIALS
+===================================================== -->
+<section>
+<div class="container">
+<div class="section-heading reveal">
+<span>
+                Student Reviews
+            </span>
+<h2>
+                What Students Say
+            </h2>
+<p>
+                A simple platform designed around real student needs.
+            </p>
+</div>
+<div class="testimonial-grid">
+<div class="testimonial reveal">
+<div class="stars">
+                    ★★★★★
+                </div>
+<p>
+                    "StudentHub makes it easy to manage my timetable,
+                    assignments and courses from one place."
+                </p>
+<div class="person">
+<div class="person-avatar"><img alt="Ananya Sharma" loading="lazy" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=120&amp;q=80"/></div>
+<div>
+<h4>
+                            Ananya Sharma
+                        </h4>
+<small>
+                            CSE Student
+                        </small>
+</div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="stars">
+                    ★★★★★
+                </div>
+<p>
+                    "The dashboard gives me a quick view of everything
+                    important for my college life."
+                </p>
+<div class="person">
+<div class="person-avatar"><img alt="Rahul Kumar" loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=120&amp;q=80"/></div>
+<div>
+<h4>
+                            Rahul Kumar
+                        </h4>
+<small>
+                            IT Student
+                        </small>
+</div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="stars">
+                    ★★★★★
+                </div>
+<p>
+                    "The career section is really helpful for finding
+                    internships and opportunities."
+                </p>
+<div class="person">
+<div class="person-avatar"><img alt="Priya Singh" loading="lazy" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&amp;fit=crop&amp;w=120&amp;q=80"/></div>
+<div>
+<h4>
+                            Priya Singh
+                        </h4>
+<small>
+                            Computer Science
+                        </small>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
+     CTA
+===================================================== -->
+<section class="cta">
+<div class="container">
+<div class="cta-box reveal">
+<h2>
+                Ready to Start Your Journey?
+            </h2>
+<p>
+                Join StudentHub and make your student life easier.
+            </p>
+<button class="btn cta-btn" onclick="showRegister(event)">
+
+                Get Started
+
+                <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a class="logo" href="#home">
+<span class="logo-icon">
+<i class="fa-solid fa-graduation-cap"></i>
+</span>
+<span>
+                        StudentHub
+                    </span>
+</a>
+<p>
+                    A modern student platform for learning,
+                    academic management and career growth.
+                </p>
+<div class="socials">
+<a href="#">
+<i class="fa-brands fa-instagram"></i>
+</a>
+<a href="#">
+<i class="fa-brands fa-linkedin-in"></i>
+</a>
+<a href="#">
+<i class="fa-brands fa-github"></i>
+</a>
+<a href="#">
+<i class="fa-brands fa-x-twitter"></i>
+</a>
+</div>
+</div>
+<div>
+<h3>
+                    Platform
+                </h3>
+<ul>
+<li>
+<a href="#dashboard">
+                            Dashboard
+                        </a>
+</li>
+<li>
+<a href="#courses">
+                            Courses
+                        </a>
+</li>
+<li>
+<a href="#events">
+                            Events
+                        </a>
+</li>
+<li>
+<a href="#career">
+                            Career
+                        </a>
+</li>
+</ul>
+</div>
+<div>
+<h3>
+                    Resources
+                </h3>
+<ul>
+<li>
+<a href="#">
+                            Study Material
+                        </a>
+</li>
+<li>
+<a href="#">
+                            Assignments
+                        </a>
+</li>
+<li>
+<a href="#">
+                            Question Bank
+                        </a>
+</li>
+<li>
+<a href="#">
+                            Help Center
+                        </a>
+</li>
+</ul>
+</div>
+<div>
+<h3>
+                    Company
+                </h3>
+<ul>
+<li>
+<a href="#">
+                            About Us
+                        </a>
+</li>
+<li>
+<a href="#">
+                            Contact
+                        </a>
+</li>
+<li>
+<a href="#">
+                            Privacy Policy
+                        </a>
+</li>
+<li>
+<a href="#">
+                            Terms
+                        </a>
+</li>
+</ul>
+</div>
+</div>
+<div class="copyright">
+
+            © 2026 StudentHub. All Rights Reserved.
+
+        </div>
+</div>
+</footer>
+<!-- BACK TO TOP -->
+<button class="top-btn" id="topBtn">
+<i class="fa-solid fa-arrow-up"></i>
+</button>
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+<script>
+
+
+    /* ==============================================
+       MOBILE MENU
+    ============================================== */
+
+    const menuBtn = document.getElementById("menuBtn");
+
+    const navLinks = document.getElementById("navLinks");
+
+
+    menuBtn.addEventListener("click", function () {
+
+        navLinks.classList.toggle("show");
+
+        const icon = menuBtn.querySelector("i");
+
+        if (navLinks.classList.contains("show")) {
+
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+
+        } else {
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        }
+
+    });
+
+
+    /* Close menu */
+
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
+
+        link.addEventListener("click", function() {
+
+            navLinks.classList.remove("show");
+
+            const icon = menuBtn.querySelector("i");
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        });
+
+    });
+
+
+
+    /* ==============================================
+       SCROLL ANIMATION
+    ============================================== */
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+
+    function revealOnScroll() {
+
+        revealElements.forEach(function(element) {
+
+            const elementTop =
+                element.getBoundingClientRect().top;
+
+            const windowHeight =
+                window.innerHeight;
+
+
+            if (elementTop < windowHeight - 70) {
+
+                element.classList.add("active");
+
+            }
+
+        });
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        revealOnScroll
+    );
+
+
+    revealOnScroll();
+
+
+
+    /* ==============================================
+       BACK TO TOP
+    ============================================== */
+
+    const topBtn =
+        document.getElementById("topBtn");
+
+
+    window.addEventListener("scroll", function() {
+
+        if (window.scrollY > 500) {
+
+            topBtn.classList.add("show");
+
+        } else {
+
+            topBtn.classList.remove("show");
+
+        }
+
+    });
+
+
+    topBtn.addEventListener("click", function() {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+
+    /* ==============================================
+       EVENT REGISTRATION
+    ============================================== */
+
+    function registerEvent(eventName) {
+
+        alert(
+            "🎉 Registration Successful!\n\n" +
+            "Event: " + eventName +
+            "\n\nThank you for registering."
+        );
+
+    }
+
+
+
+    /* ==============================================
+       LOGIN
+    ============================================== */
+
+    function showLogin(event) {
+
+        if (event) {
+            event.preventDefault();
+        }
+
+        alert(
+            "StudentHub Login\n\n" +
+            "Login system will be connected with backend."
+        );
+
+    }
+
+
+
+    /* ==============================================
+       REGISTER
+    ============================================== */
+
+    function showRegister(event) {
+
+        if (event) {
+            event.preventDefault();
+        }
+
+        alert(
+            "StudentHub Registration\n\n" +
+            "Registration system will be connected with backend."
+        );
+
+    }
+
+
+
+    /* ==============================================
+       CAREER
+    ============================================== */
+
+    function exploreCareer(event) {
+
+        if (event) {
+            event.preventDefault();
+        }
+
+        alert(
+            "🚀 Career Opportunities\n\n" +
+            "Internships, jobs and scholarships will appear here."
+        );
+
+    }
+
+</script>
+</body>
+</html>
